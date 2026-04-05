@@ -39,4 +39,8 @@ public class Item {
     public void setAttributes(List<ItemAttribute> attributes) {
         this.attributes = attributes;
     }
+    @Override
+    public String toString() {
+        return "Item [id=" + id + ", name=" + name + ", type=" + type + ", attributes=" + attributes + "]";
+    }
 }

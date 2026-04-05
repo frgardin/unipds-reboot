@@ -29,5 +29,10 @@ public class ItemAttribute {
     }
     public void setAttribute3(String attribute3) {
         this.attribute3 = attribute3;
+    }
+    @Override
+    public String toString() {
+        return "ItemAttribute [attribute1=" + attribute1 + ", attribute2=" + attribute2 + ", attribute3=" + attribute3
+                + "]";
     }    
 }

@@ -3,29 +3,13 @@
  */
 package org.example;
 
-import com.google.gson.Gson;
-import java.util.List;
-
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+    
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Database database = new Database();
     
-        Item item = new Item();
-        item.setId(1L);
-        item.setName("Item name");
-        item.setType(ItemType.TYPE_1);
-        ItemAttribute itemAttribute1 = new ItemAttribute();
-        itemAttribute1.setAttribute1("1");
-        ItemAttribute itemAttribute2 = new ItemAttribute();
-        itemAttribute2.setAttribute2("2");
-        item.setAttributes(List.of(itemAttribute1, itemAttribute2));
-
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(item));
+        System.out.println(database.listOfItems());
     }
 }
 
