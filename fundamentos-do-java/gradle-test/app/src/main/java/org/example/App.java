@@ -3,21 +3,26 @@
  */
 package org.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class App {
-    
 
     public static void main(String[] args) {
         Database database = new Database(100);
-    
 
         database.listOfItems().stream()
-            .collect(Collectors.groupingBy(Item::getType, LinkedHashMap::new, Collectors.counting())) 
-            .forEach((k, v) -> System.out.println(k + ": " + v));
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        database.listOfItems().stream()
+                .collect(Collectors.groupingBy(Item::getType, Collectors.counting()))
+                .forEach((k, v) -> System.out.println(k + ": " + v));
+
+        database.listOfItems().stream()
+                .collect(Collectors.groupingBy(Item::getType, LinkedHashMap::new, Collectors.counting()))
+                .forEach((k, v) -> System.out.println(k + ": " + v));
     }
 }
-

@@ -1,12 +1,17 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class Database {
 
     private final int size;
+
+    private final Map<Long, Item> itemsMap;
 
     private Database() {
         throw new IllegalAccessError();
@@ -14,15 +19,17 @@ public class Database {
 
     public Database(int size) {
         this.size = size;
+        itemsMap = LongStream.range(0, size)
+                .mapToObj(Database::createNewItem)
+                .collect(Collectors.toMap(Item::getId, Function.identity()));
     }
 
     public List<Item> listOfItems() {
-        var result = new ArrayList<Item>();
+        return itemsMap.values().stream().toList();
+    }
 
-        IntStream.range(0, size)
-            .forEach(id -> result.add(createNewItem((long)id)));
-
-        return result;
+    public Optional<Item> getItemById(Long id) {
+        return itemsMap.containsKey(id) ? Optional.of(itemsMap.get(id)) : Optional.empty();
     }
 
     private static Item createNewItem(Long id) {
