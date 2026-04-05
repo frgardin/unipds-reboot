@@ -12,17 +12,32 @@ import java.util.stream.Collectors;
 public class App {
 
     public static void main(String[] args) {
-        Database database = new Database(100);
+        Database database1 = new Database(100);
 
-        database.listOfItems().stream()
+        database1.listOfItems().stream()
                 .collect(Collectors.toCollection(ArrayList::new));
 
-        database.listOfItems().stream()
+        database1.listOfItems().stream()
                 .collect(Collectors.groupingBy(Item::getType, Collectors.counting()))
                 .forEach((k, v) -> System.out.println(k + ": " + v));
 
-        database.listOfItems().stream()
+        database1.listOfItems().stream()
                 .collect(Collectors.groupingBy(Item::getType, LinkedHashMap::new, Collectors.counting()))
                 .forEach((k, v) -> System.out.println(k + ": " + v));
+
+        var database = new Database(10);
+        var history = new History(database);
+
+        history.register(1L);
+        history.register(2L);
+        history.register(3L);
+        history.register(4L);
+        history.register(5L);
+        history.register(1L);
+        history.register(6L);
+        history.register(7L);
+
+        history.listVisualizedItems();
+
     }
 }
