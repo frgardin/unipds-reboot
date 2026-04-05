@@ -3,6 +3,10 @@
  */
 package org.example;
 
+import java.util.HashMap;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
 public class App {
     
 
@@ -11,11 +15,8 @@ public class App {
     
 
         database.listOfItems().stream()
-            .map(Item::getType)
-            .distinct()
-            .sorted()
-            .forEach(System.out::println);
-
+            .collect(Collectors.groupingBy(Item::getType, Collectors.counting())) 
+            .forEach((k, v) -> System.out.println(k + ": " + v));
     }
 }
 
