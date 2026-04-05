@@ -7,10 +7,15 @@ public class App {
     
 
     public static void main(String[] args) {
-        Database database = new Database(10);
+        Database database = new Database(100);
     
 
-        database.listOfItems().stream().forEach(System.out::println);
+        database.listOfItems().stream()
+            .map(Item::getType)
+            .distinct()
+            .sorted()
+            .forEach(System.out::println);
+
     }
 }
 
