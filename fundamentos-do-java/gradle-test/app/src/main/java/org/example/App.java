@@ -7,9 +7,10 @@ public class App {
     
 
     public static void main(String[] args) {
-        Database database = new Database();
+        Database database = new Database(10);
     
-        System.out.println(database.listOfItems());
+
+        database.listOfItems().stream().forEach(System.out::println);
     }
 }
 

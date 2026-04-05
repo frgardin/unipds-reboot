@@ -5,11 +5,21 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Database {
-    
+
+    private final int size;
+
+    private Database() {
+        throw new IllegalAccessError();
+    }
+
+    public Database(int size) {
+        this.size = size;
+    }
+
     public List<Item> listOfItems() {
         var result = new ArrayList<Item>();
 
-        IntStream.range(0, 100)
+        IntStream.range(0, size)
             .forEach(id -> result.add(createNewItem((long)id)));
 
         return result;
