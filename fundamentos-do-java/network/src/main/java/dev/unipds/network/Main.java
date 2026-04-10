@@ -16,6 +16,6 @@ public class Main {
         while (sc.hasNextLine()) {
             System.out.println(sc.nextLine());
         }
-        
+        sc.close();        
     }
 }
