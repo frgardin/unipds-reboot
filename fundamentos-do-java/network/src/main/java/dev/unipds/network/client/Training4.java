@@ -1,11 +1,11 @@
-package dev.unipds.network;
+package dev.unipds.network.client;
 
-import java.net.*;
-import java.net.http.*;
-import java.io.*;
-import java.util.*;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
-public class Training2 {
+public class Training4 {
     
     public static void main(String[] args) throws Exception {
         URI uri = URI.create("https://viacep.com.br/ws/01001000/json/"); 
