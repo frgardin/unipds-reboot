@@ -3,8 +3,6 @@ package dev.unipds.network.server;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.PathMatcher;
-import java.nio.file.FileSystems;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,16 +24,10 @@ public class CustomerJsonFactory {
     }
 
     public static void deleteAll() throws IOException {
-        PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*-customers.json");
-        try (var stream = Files.list(Path.of("."))) {
-            stream.filter(p -> matcher.matches(p.getFileName()))
-                    .forEach(p -> {
-                        try {
-                            Files.delete(p);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
+        try (var stream = Files.newDirectoryStream(Path.of("."), "*-customers.json")) {
+            for (Path p : stream) {
+                Files.delete(p);
+            }
         }
     }
 }
