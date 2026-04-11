@@ -1,6 +1,5 @@
 package dev.unipds.network.server;
 
-
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
@@ -15,19 +14,27 @@ public class CustomerServer {
         InetSocketAddress inetSocketAddress = new InetSocketAddress(8080);
         HttpServer httpServer = HttpServer.create(inetSocketAddress, 0);
 
-        Path sampleJson = CustomerJsonFactory.createSampleJson();
-
         httpServer.createContext("/customers.json", exchange -> {
-            String json = Files.readString(sampleJson);
-            byte[] bytes = json.getBytes();
+            try {
+                Path sampleJson = CustomerJsonFactory.createSampleJson();
 
-            Headers responseHeaders = exchange.getResponseHeaders();
-            responseHeaders.add("Content-Type", "application/json; charset=UTF-8");
+                String json = Files.readString(sampleJson);
+                byte[] bytes = json.getBytes();
 
-            exchange.sendResponseHeaders(200, bytes.length);
+                Headers responseHeaders = exchange.getResponseHeaders();
+                responseHeaders.add("Content-Type", "application/json; charset=UTF-8");
 
-            OutputStream responseBody = exchange.getResponseBody();
-            responseBody.write(bytes);
+                exchange.sendResponseHeaders(200, bytes.length);
+
+                try (OutputStream responseBody = exchange.getResponseBody()) {
+                    responseBody.write(bytes);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                CustomerJsonFactory.deleteAll();
+            }
+
         });
 
         System.out.println("Http Server is running!");
