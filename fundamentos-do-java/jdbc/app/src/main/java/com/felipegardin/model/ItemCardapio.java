@@ -14,13 +14,64 @@ public class ItemCardapio {
     public ItemCardapio() {
     }
 
-    public ItemCardapio(Long id, String nome, String descricao, Categoria categoria, BigDecimal preco, BigDecimal precoPromocional) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.categoria = categoria;
-        this.preco = preco;
-        this.precoPromocional = precoPromocional;
+    private ItemCardapio(Builder builder) {
+        this.id = builder.id;
+        this.nome = builder.nome;
+        this.descricao = builder.descricao;
+        this.categoria = builder.categoria;
+        this.preco = builder.preco;
+        this.precoPromocional = builder.precoPromocional;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private Long id;
+        private String nome;
+        private String descricao;
+        private Categoria categoria;
+        private BigDecimal preco;
+        private BigDecimal precoPromocional;
+
+        private Builder() {
+        }
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder nome(String nome) {
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder descricao(String descricao) {
+            this.descricao = descricao;
+            return this;
+        }
+
+        public Builder categoria(Categoria categoria) {
+            this.categoria = categoria;
+            return this;
+        }
+
+        public Builder preco(BigDecimal preco) {
+            this.preco = preco;
+            return this;
+        }
+
+        public Builder precoPromocional(BigDecimal precoPromocional) {
+            this.precoPromocional = precoPromocional;
+            return this;
+        }
+
+        public ItemCardapio build() {
+            return new ItemCardapio(this);
+        }
     }
 
     public Long getId() {
