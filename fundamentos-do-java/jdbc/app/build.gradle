@@ -24,6 +24,9 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
 
+    // Jakarta Persistence API (annotations only — no JPA provider)
+    implementation libs.jakarta.persistence.api
+
     // MySQL JDBC driver
     implementation libs.mysql.connector.j
 }
