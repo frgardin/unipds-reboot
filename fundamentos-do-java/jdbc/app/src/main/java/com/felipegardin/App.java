@@ -3,18 +3,27 @@
  */
 package com.felipegardin;
 
+import java.util.List;
+
 import com.felipegardin.database.Database;
+import com.felipegardin.model.ItemCardapio;
 
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
         Database database = new Database();
 
-        System.out.println(database.getAll());
+        List<ItemCardapio> elements = database.getAll();
+
+        System.out.println(elements);
+
+        System.out.println("----total----");
+        System.out.println("Total by database: " + database.count());
+        System.out.println("Total of the list: " + elements.size());
     }
 }
