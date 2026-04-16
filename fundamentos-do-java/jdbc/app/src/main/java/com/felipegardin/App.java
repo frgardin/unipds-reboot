@@ -20,8 +20,6 @@ public class App {
 
         List<ItemCardapio> elements = database.getAll();
 
-        System.out.println(elements);
-
         System.out.println("----total----");
         System.out.println("Total by database: " + database.count());
         System.out.println("Total of the list: " + elements.size());
