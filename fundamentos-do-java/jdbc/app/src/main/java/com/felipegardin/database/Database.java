@@ -26,8 +26,7 @@ public class Database {
                         preco_promocional
                   FROM  item_cardapio
                 """;
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cardapio", "root",
-                "senha123")) {
+        try (Connection connection = getConnnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -55,13 +54,26 @@ public class Database {
         }
     }
 
+    public void add(ItemCardapio itemCardapio) {
+        String sql = """
+                INSERT INTO item_cardapio(nome, descricao, categoria, preco, preco_promocional)
+                VALUES (?, ?, ?, ?, ?)
+                """;
+        try (Connection connection = getConnnection()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public int count() {
         String sql = """
                 SELECT  COUNT(*)
                   FROM  item_cardapio
                 """;
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cardapio", "root",
-                "senha123")) {
+        try (Connection connection = getConnnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
@@ -73,6 +85,11 @@ public class Database {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static Connection getConnnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/cardapio", "root",
+                "senha123");
     }
 
 }
