@@ -3,9 +3,11 @@
  */
 package com.felipegardin;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.felipegardin.database.Database;
+import com.felipegardin.model.Categoria;
 import com.felipegardin.model.ItemCardapio;
 
 public class App {
@@ -17,6 +19,18 @@ public class App {
         System.out.println(new App().getGreeting());
 
         Database database = new Database();
+
+        ItemCardapio novoItem = ItemCardapio.builder()
+                .nome("Pudim de Leite")
+                .descricao("Pudim cremoso de leite condensado")
+                .categoria(Categoria.SOBREMESA)
+                .preco(new BigDecimal("14.90"))
+                .build();
+
+        database.add(novoItem);
+        
+        System.out.println("-----last item----");
+        System.out.println(database.getLastRegister().get());
 
         List<ItemCardapio> elements = database.getAll();
 
