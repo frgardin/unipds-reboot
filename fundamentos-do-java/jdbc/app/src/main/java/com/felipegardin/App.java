@@ -6,7 +6,7 @@ package com.felipegardin;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.felipegardin.database.Database;
+import com.felipegardin.database.DatabaseItemCardapio;
 import com.felipegardin.model.Categoria;
 import com.felipegardin.model.ItemCardapio;
 
@@ -18,7 +18,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
-        Database database = new Database();
+        DatabaseItemCardapio database = new DatabaseItemCardapio();
 
         ItemCardapio novoItem = ItemCardapio.builder()
                 .nome("Pudim de Leite")

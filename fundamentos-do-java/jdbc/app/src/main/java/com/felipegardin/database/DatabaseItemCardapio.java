@@ -13,7 +13,7 @@ import java.util.Optional;
 import com.felipegardin.model.Categoria;
 import com.felipegardin.model.ItemCardapio;
 
-public class Database {
+public class DatabaseItemCardapio implements BaseRepository<ItemCardapio, Long> {
 
     public List<ItemCardapio> getAll() {
         List<ItemCardapio> itemsDoCardapio = new ArrayList<>();
@@ -55,7 +55,7 @@ public class Database {
         }
     }
 
-    public Optional<ItemCardapio> getById(Long id) {
+    public Optional<ItemCardapio> findById(Long id) {
 
         String sql = """
                 SELECT  id,
