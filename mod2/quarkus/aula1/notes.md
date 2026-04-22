@@ -16,3 +16,23 @@
 - ou seja, o quarkus em si mesmo eh uma stack completa que permite o desenvolvimento de aplicacoes prontas para rodar em kubernetes (de containers first a kubernetes native), com 100% de compatilidade tanto com o open jdk quanto com compilacao nativa (via graalvm)
 - possibilita o desenvolvimento de todo tipo de aplicacao: monólitos, microservices, serverless, command-line tools, event driven, web app, etc
 - traz em sua plataforma toda integracao com os maiores projetos open source do mercado como: kubernetes, camel, hibernate, langchain4j, openshift, kafka... alem de integracao com os principais provedores de servicos, como: AWS, Google e Azure
+
+## Containers First
+
+- tudo no quarkus foi pensado visando o uso em ambientes de containers
+    - otimizacao de espaco em disco, visando imagens de containers menores
+    - otimizacao de tempo de startup, visando escalabilidade instantanea
+    - otimizacao de memoria e CPU, visando maior desidade de deployment
+
+## Kubernetes Native
+
+- ja que tudo eh feito para rodar em containers, entao faz sentido fazer tudo rodar em kubernetes
+    - metricas
+    - health check
+    - debugging
+    - tracing
+    - config maps
+    - secrets
+    - yaml
+
+
