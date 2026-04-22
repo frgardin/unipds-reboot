@@ -35,4 +35,11 @@
     - secrets
     - yaml
 
+## experiencia de usuario
+
+- usuario = desenvolvedor
+- um dos poucos frameworks para trazer uma experiencia de uso realmente diferenciada
+    - live reload em fracoes de segundo
+    - dev services (banco de dados, kafka, servidores de email... tudo em seu ambiente local com setup automatico via TestContainers)
+    - compilacao native (out of the box)
 
