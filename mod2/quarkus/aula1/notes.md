@@ -43,3 +43,11 @@
     - dev services (banco de dados, kafka, servidores de email... tudo em seu ambiente local com setup automatico via TestContainers)
     - compilacao native (out of the box)
 
+## Open Source
+
+- injecao de dependencias via CDI
+- rest endpoints via JAX-RS
+- persistencia via JPA
+- transacoes via JTA
+- IA via langchain4j
+
