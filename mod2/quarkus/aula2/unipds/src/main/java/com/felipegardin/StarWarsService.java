@@ -15,6 +15,8 @@ import jakarta.ws.rs.core.MediaType;
 @RegisterRestClient(baseUri = "https://swapi.info/api/")
 public interface StarWarsService {
     
+    String MSG_ERROR = "Fallback\n";
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("starships")
@@ -34,6 +36,6 @@ public interface StarWarsService {
     public String getStarships();
 
     default String getStarshipsFallback() {
-        return "Fallback";
+        return MSG_ERROR;
     }
 }
