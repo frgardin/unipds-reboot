@@ -2,8 +2,6 @@ package com.felipegardin;
 
 import java.util.List;
 
-import com.arjuna.ats.arjuna.common.recoveryPropertyManager;
-
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
