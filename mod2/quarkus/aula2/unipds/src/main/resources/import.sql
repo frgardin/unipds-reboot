@@ -1,0 +1,11 @@
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (1, 'Ana Silva', 1990);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (2, 'Bruno Souza', 1985);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (3, 'Carla Pereira', 1995);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (4, 'Diego Oliveira', 1978);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (5, 'Eduarda Lima', 2000);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (6, 'Felipe Gardin', 1992);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (7, 'Gabriela Costa', 1988);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (8, 'Henrique Martins', 1999);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (9, 'Isabela Rocha', 2001);
+INSERT INTO Pessoa(id, nome, anoNascimento) VALUES (10, 'Joao Almeida', 1983);
+ALTER SEQUENCE Pessoa_SEQ RESTART WITH 11;
