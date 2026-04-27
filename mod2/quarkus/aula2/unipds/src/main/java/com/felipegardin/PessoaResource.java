@@ -11,6 +11,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
@@ -41,17 +42,19 @@ public class PessoaResource {
     }
 
     @PUT
+    @Path("/{id}")
     @Transactional
-    public Pessoa alterPessoa(Pessoa pessoa) {
-        Pessoa p = Pessoa.findById(pessoa.id);
+    public Pessoa alterPessoa(@PathParam("id") int id, Pessoa pessoa) {
+        Pessoa p = Pessoa.findById(id);
         p.nome = pessoa.nome;
         p.anoNascimento = pessoa.anoNascimento;
         return p;
     }
 
     @DELETE
+    @Path("/{id}")
     @Transactional
-    public void deletePessoa(int id) {
+    public void deletePessoa(@PathParam("id") int id) {
         Pessoa.deleteById(id);
     }
 }
