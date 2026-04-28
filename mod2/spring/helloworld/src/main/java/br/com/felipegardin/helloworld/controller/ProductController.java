@@ -100,7 +100,7 @@ public class ProductController {
                 .filter(i -> database.get(i).id().equals(id))
                 .findFirst();
 
-        if (index.isPresent()) {
+        if (index.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         Product productToBeDeleted = database.get(index.getAsInt());
