@@ -1,12 +1,16 @@
 package br.com.felipegardin.helloworld.controller;
 
+import java.lang.module.ResolutionException;
 import java.math.BigDecimal;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.IntStream;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,12 +56,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> findAll() {
-        return database;
+    public ResponseEntity<List<Product>> findAll() {
+        return ResponseEntity.ok(database);
     }
 
     @PostMapping
-    public Product addNewProduct(@RequestBody Product product) {
+    public ResponseEntity<Product> addNewProduct(@RequestBody Product product) throws URISyntaxException {
         Product registeredProduct = new Product(
                 lastId.getAndIncrement(),
                 product.name(),
@@ -66,11 +70,12 @@ public class ProductController {
 
         database.add(registeredProduct);
 
-        return registeredProduct;
+        return ResponseEntity.created(new URI("/products/%d".formatted(lastId.get()))).body(registeredProduct);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable("id") Long id, @RequestBody Product product)
+            throws URISyntaxException {
         OptionalInt index = IntStream.range(0, database.size())
                 .filter(i -> database.get(i).id().equals(id))
                 .findFirst();
@@ -84,24 +89,24 @@ public class ProductController {
                     .build();
 
             database.set(index.getAsInt(), productUpdated);
-            return productUpdated;
+            return ResponseEntity.ok(productUpdated);
         }
 
         return addNewProduct(product);
     }
 
     @DeleteMapping("/{id}")
-    public Product delete(@PathVariable Long id) {
+    public ResponseEntity<Product> delete(@PathVariable Long id) {
         OptionalInt index = IntStream.range(0, database.size())
                 .filter(i -> database.get(i).id().equals(id))
                 .findFirst();
 
         if (index.isPresent()) {
-            throw new IllegalArgumentException();
+            return ResponseEntity.notFound().build();
         }
         Product productToBeDeleted = database.get(index.getAsInt());
 
         database.remove(index.getAsInt());
-        return productToBeDeleted;
+        return ResponseEntity.ok(productToBeDeleted);
     }
 }
