@@ -1,6 +1,5 @@
 package br.com.felipegardin.helloworld.controller;
 
-import java.lang.module.ResolutionException;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
