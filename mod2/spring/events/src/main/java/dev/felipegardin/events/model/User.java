@@ -8,9 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,13 +26,8 @@ public class User {
     @Column(name = "email", unique = true, nullable = false, length = 255)
     private String email;
 
-    @ManyToMany
-    @JoinTable(
-        name = "tbl_subscription",
-        joinColumns = @JoinColumn(name = "id_user"),
-        inverseJoinColumns = @JoinColumn(name = "id_session")
-    )
-    private List<Session> sessions = new ArrayList<>();
+    @OneToMany(mappedBy = "id.user")
+    private List<Subscription> subscriptions = new ArrayList<>();
 
     public User() {
     }
@@ -63,21 +56,21 @@ public class User {
         this.email = email;
     }
 
-    public List<Session> getSessions() {
-        return sessions;
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
     }
 
-    public void setSessions(List<Session> sessions) {
-        this.sessions = sessions;
+    public void setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 
-    public void addSession(Session session) {
-        this.sessions.add(session);
-        session.getUsers().add(this);
+    public void addSubscription(Subscription subscription) {
+        subscription.getId().setUser(this);
+        this.subscriptions.add(subscription);
     }
 
-    public void removeSession(Session session) {
-        this.sessions.remove(session);
-        session.getUsers().remove(this);
+    public void removeSubscription(Subscription subscription) {
+        this.subscriptions.remove(subscription);
+        subscription.getId().setUser(null);
     }
 }

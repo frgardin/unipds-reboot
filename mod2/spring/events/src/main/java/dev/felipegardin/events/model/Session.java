@@ -13,8 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -39,8 +39,8 @@ public class Session {
     @JoinColumn(name = "id_conference", nullable = false)
     private Conference conference;
 
-    @ManyToMany(mappedBy = "sessions")
-    private List<User> users = new ArrayList<>();
+    @OneToMany(mappedBy = "id.session")
+    private List<Subscription> subscriptions = new ArrayList<>();
 
     public Session() {
     }
@@ -85,21 +85,21 @@ public class Session {
         this.conference = conference;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 
-    public void addUser(User user) {
-        this.users.add(user);
-        user.getSessions().add(this);
+    public void addSubscription(Subscription subscription) {
+        subscription.getId().setSession(this);
+        this.subscriptions.add(subscription);
     }
 
-    public void removeUser(User user) {
-        this.users.remove(user);
-        user.getSessions().remove(this);
+    public void removeSubscription(Subscription subscription) {
+        this.subscriptions.remove(subscription);
+        subscription.getId().setSession(null);
     }
 }
