@@ -21,7 +21,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'c9268b01-3870-11f1-a76d-22b1f5789739:1-29';
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'c9268b01-3870-11f1-a76d-22b1f5789739:1-31';
 
 --
 -- Table structure for table `tbl_conference`
@@ -87,8 +87,8 @@ DROP TABLE IF EXISTS `tbl_subscription`;
 CREATE TABLE `tbl_subscription` (
   `id_user` int NOT NULL,
   `id_session` int NOT NULL,
+  PRIMARY KEY (`id_user`,`id_session`),
   KEY `tbl_subscription_tbl_session_FK` (`id_session`),
-  KEY `tbl_subscription_tbl_user_FK` (`id_user`),
   CONSTRAINT `tbl_subscription_tbl_session_FK` FOREIGN KEY (`id_session`) REFERENCES `tbl_session` (`id_session`),
   CONSTRAINT `tbl_subscription_tbl_user_FK` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -139,4 +139,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-01 21:35:41
+-- Dump completed on 2026-05-01 22:04:11
