@@ -1,4 +1,4 @@
-package br.com.felipegardin.helloworld.domain;
+package br.com.felipegardin.helloworld.model;
 
 import java.math.BigDecimal;
 
