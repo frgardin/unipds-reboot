@@ -1,4 +1,4 @@
-package dev.felipegardin.events;
+package dev.felipegardin.events.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +13,7 @@ public class Conference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_conference")
     private Integer id;
 
     @Column(name = "name", unique = true, nullable = false, length = 100)
