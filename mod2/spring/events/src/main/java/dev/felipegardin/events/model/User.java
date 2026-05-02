@@ -1,14 +1,10 @@
 package dev.felipegardin.events.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,9 +21,6 @@ public class User {
 
     @Column(name = "email", unique = true, nullable = false, length = 255)
     private String email;
-
-    @OneToMany(mappedBy = "id.user")
-    private List<Subscription> subscriptions = new ArrayList<>();
 
     public User() {
     }
@@ -54,23 +47,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Subscription> getSubscriptions() {
-        return subscriptions;
-    }
-
-    public void setSubscriptions(List<Subscription> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
-
-    public void addSubscription(Subscription subscription) {
-        subscription.getId().setUser(this);
-        this.subscriptions.add(subscription);
-    }
-
-    public void removeSubscription(Subscription subscription) {
-        this.subscriptions.remove(subscription);
-        subscription.getId().setUser(null);
     }
 }
