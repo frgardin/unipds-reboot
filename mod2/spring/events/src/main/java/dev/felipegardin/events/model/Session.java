@@ -2,6 +2,8 @@ package dev.felipegardin.events.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -11,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -35,6 +38,9 @@ public class Session {
     @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_conference", nullable = false)
     private Conference conference;
+
+    @ManyToMany(mappedBy = "sessions")
+    private List<User> users = new ArrayList<>();
 
     public Session() {
     }
@@ -77,5 +83,23 @@ public class Session {
 
     public void setConference(Conference conference) {
         this.conference = conference;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addUser(User user) {
+        this.users.add(user);
+        user.getSessions().add(this);
+    }
+
+    public void removeUser(User user) {
+        this.users.remove(user);
+        user.getSessions().remove(this);
     }
 }
