@@ -59,7 +59,7 @@ CREATE TABLE `tbl_session` (
   `id_session` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` time NOT NULL,
+  `start_time` time NOT NULL,
   `id_conference` int NOT NULL,
   PRIMARY KEY (`id_session`),
   UNIQUE KEY `tbl_session_unique` (`title`),
