@@ -1,5 +1,7 @@
 package dev.felipegardin.security.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import dev.felipegardin.security.dto.UserDTO;
@@ -21,5 +23,13 @@ public class UserServiceImpl implements IUserService {
         var newUser = userMapper.mapToNewUser(userDTO);
         User savedUser = userRepository.save(newUser);
         return userMapper.mapToUserDTO(savedUser);
+    }
+
+    @Override
+    public List<UserDTO> listUsers() {
+        return userRepository.findAll()
+                    .stream()
+                    .map(userMapper::mapToUserDTO)
+                    .toList();    
     }
 }
