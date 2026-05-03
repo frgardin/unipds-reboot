@@ -1,0 +1,13 @@
+package dev.felipegardin.security.dto;
+
+import lombok.Builder;
+
+@Builder
+public record UserDTO(
+    Long id,
+    String name,
+    String username,
+    String password
+) {
+    
+}
