@@ -18,7 +18,6 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers(HttpMethod.GET, "/open").permitAll()
                                     .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                                    .requestMatchers(HttpMethod.GET, "/users").permitAll()
                                     .anyRequest()
                                     .authenticated())
                 .build();
