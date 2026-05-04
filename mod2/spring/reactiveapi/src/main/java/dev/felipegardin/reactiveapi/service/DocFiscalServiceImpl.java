@@ -20,14 +20,13 @@ public class DocFiscalServiceImpl implements IDocFiscalService {
                 .uri("http://localhost:8080/hello")
                 .retrieve()
                 .bodyToMono(String.class)
-                .doOnNext(response -> {
+                .subscribe(response -> {
                     System.out.println("Deu certo");
                     DocFiscal doc = new DocFiscal();
                     doc.setProtocolo(protocolo);
                     doc.setDocumento(response);
                     repo.save(doc);
-                })
-                .doOnError(error -> {
+                },error -> {
                     System.out.println(error);
                 });
     }
