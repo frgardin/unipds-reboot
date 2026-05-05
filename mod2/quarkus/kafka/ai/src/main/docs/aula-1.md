@@ -5,7 +5,35 @@
 - Diferenciar IA preditiva e IA generativa
 - Compreender a fundamento do curso: o desenvolvedor Java com integrador de IA, nao como cientista de dados
 - Identificar os componentes do stack tecnologico:
-    - quarkus
-    - langchain4j
-    - ollama
+  - quarkus
+  - langchain4j
+  - ollama
 - visualizar a arquitetura inicial da implementacao de referencia do curso e seu plano de evolucao
+
+## O mundo da IA: duas realidades distintas
+
+- a inteligencia artificial no ambiente corporativo se manifesta em duas vertentes principais, com propositos e capacidades fundamentalmente diferentes
+
+- IA preditiva:
+  - tecnologia madura, baseada em modelos estatisticos e machine learning classico
+  - objetivo: analisar dados historicos para prever resultados futuros ou classificar informacoes
+  - saida: estruturada (um numero, uma categoria, uma probabilidade). Ex: score de credito, deteccao de fraude
+
+- IA generativa:
+  - tecnologia emergenete projetada para criar conteudo novo e original
+  - base: utiliza large language models (LLMs) para gerar textos, imagens, musica, e codigo em resposta a um prompt
+  - saida: nao estruturada e criativa. abre possibilidades para automacao de comunicacao e desenvolvimento de software
+
+## O papel do desenvolvedor
+
+- a transicao da IA preditiva para a generativa eleva o desenvolvedor de um mero consumidor de APIs para um arquiteto de sistemas cognitivos.
+
+| Característica     | IA Preditiva                                              | IA Generativa                                                   |
+|--------------------|-----------------------------------------------------------|-----------------------------------------------------------------|
+| **Objetivo**       | Prever resultados futuros ou classificar informações      | Criar conteúdo novo e original a partir de um prompt            |
+| **Base tecnológica**| Modelos estatísticos e machine learning clássico         | Large Language Models (LLMs)                                    |
+| **Tipo de saída**  | Estruturada (número, categoria, probabilidade)            | Não estruturada e criativa (texto, imagem, código, música)      |
+| **Maturidade**     | Tecnologia madura e consolidada                           | Tecnologia emergente em rápida evolução                         |
+| **Exemplos de uso**| Score de crédito, detecção de fraude, recomendações       | Chatbots, geração de código, automação de comunicação           |
+| **Entrada**        | Dados históricos estruturados                             | Linguagem natural (prompt)                                      |
+| **Papel do Desenvolvedor** | Consumidor de Modelo: Integrar uma API que retorna uma predicao | Arquiteto Cognitivo: Orquestrar o fluxxo de informacao e o raciocinio do LLM. |
