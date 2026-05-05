@@ -37,3 +37,18 @@
 | **Exemplos de uso**| Score de crédito, detecção de fraude, recomendações       | Chatbots, geração de código, automação de comunicação           |
 | **Entrada**        | Dados históricos estruturados                             | Linguagem natural (prompt)                                      |
 | **Papel do Desenvolvedor** | Consumidor de Modelo: Integrar uma API que retorna uma predicao | Arquiteto Cognitivo: Orquestrar o fluxxo de informacao e o raciocinio do LLM. |
+
+### IA Preditiva
+
+O desenvolvedor invocava um endpoint e processava uma resposta estrutura, tratando o modelo como uma "caixa-preta".
+
+### IA Generativa
+
+O desafio é mais estratégico. O desenvolvedor precisa projetar todo o fluxo de "pensamento" da aplicaçao:
+    - Determinar se e quais informacoes externas sao necessarias (ex: RAG)
+    - Formatar essas informacoes em estruturas e prompts eficazes
+    - Definir e disponibilizar ferramentas que serao integradas ao LLM
+    - Validar e utilizar a resposta gerada
+
+## Foco em integracao, nao em ciencia de dados
+
