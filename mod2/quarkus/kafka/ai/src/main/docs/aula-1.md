@@ -52,3 +52,9 @@ O desafio é mais estratégico. O desenvolvedor precisa projetar todo o fluxo de
 
 ## Foco em integracao, nao em ciencia de dados
 
+- A grande forca do java está em sua vasta integracao dentro do ambiente corporativo
+- o real valor do desenvolvedor java na era da IA nao esta em treinar modelos, mas na integracao de LLMs pre treinados com os sistemas corporativos existentes (ERPs, CRMs, etc.)
+- O ecossistema Java eh ideal para esta tarefa devido a:
+  - escalabilidade e performance: frameworks como quarkus sao otimizados para nuvem, com baixo consumo de memoria e startup rapido
+  - seguranca: modelo de seguranca maduro para manuseio de dados sensiveis
+  - ecossistema maduro
